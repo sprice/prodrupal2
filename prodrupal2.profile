@@ -18,6 +18,9 @@ function prodrupal2_profile_modules() {
     // contrib
     'admin_menu',
     
+    // development
+    'coder', 'devel', 'schema', 'simpletest',
+    
     // custom modules
     'annotate',
     
@@ -145,6 +148,9 @@ function prodrupal2_profile_tasks(&$task, $url) {
   $theme_settings = variable_get('theme_settings', array());
   $theme_settings['toggle_node_info_page'] = FALSE;
   variable_set('theme_settings', $theme_settings);
+
+  // Enable admin theme
+  variable_set('admin_theme', 'rubik');
 
   // Update the menu router information.
   menu_rebuild();
