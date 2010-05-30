@@ -26,7 +26,6 @@ projects[tao][location] = "http://code.developmentseed.org/fserver"
 
 ; Pro Drupal Development 2nd edition modules
 
-projects[prodrupal2_modules][subdir] = "custom"
 projects[prodrupal2_modules][type] = "module"
 projects[prodrupal2_modules][download][type] = "git"
 projects[prodrupal2_modules][download][url] = "git://github.com/sprice/prodrupal2_modules.git"
