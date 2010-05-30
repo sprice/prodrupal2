@@ -17,7 +17,7 @@ projects[schema][subdir] = "development"
 projects[schema][version] = "1.7"
 
 projects[simpletest][subdir] = "development"
-projects[simpletest][version] = "2.10"
+projects[simpletest][version] = "2.8"
 
 ; Themes
 
