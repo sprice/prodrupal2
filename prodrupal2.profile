@@ -11,16 +11,13 @@ function prodrupal2_profile_modules() {
   return array(
     // required core modules
     'block', 'filter', 'node', 'system', 'user',
-    
+
     // optional core modules
     'dblog', 'contact', 'help', 'menu', 'path', 'taxonomy',
-    
+
     // contrib
     'admin_menu',
-    
-    // development
-    'coder', 'devel', 'schema', 'simpletest',
-    
+
     // custom modules
     'annotate',
     
