@@ -13,7 +13,8 @@ function prodrupal2_profile_modules() {
     'block', 'filter', 'node', 'system', 'user',
 
     // optional core modules
-    'dblog', 'contact', 'help', 'menu', 'path', 'taxonomy',
+    'dblog', 'comment',  'contact', 'help', 'menu', 'path', 'taxonomy',
+    'trigger',
 
     // contrib
     'admin_menu',
