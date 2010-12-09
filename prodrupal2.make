@@ -9,7 +9,7 @@ projects[admin][version] = "2.0"
 ; Development
 
 projects[devel][subdir] = "development"
-projects[devel][version] = "1.20"
+projects[devel][version] = "1.23"
 
 projects[coder][subdir] = "development"
 projects[coder][version] = "2.0-beta1"
