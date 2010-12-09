@@ -17,7 +17,7 @@ function prodrupal2_profile_modules() {
     'trigger',
 
     // development
-    'devel', 'coder', 'simpletest',
+    'devel', 'coder',
 
     // contrib
     'admin',

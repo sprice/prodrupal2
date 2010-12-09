@@ -3,8 +3,8 @@ core = 6.x
 
 ; Contrib
 
-projects[admin_menu][subdir] = "contrib"
-projects[admin_menu][version] = "1.5"
+projects[admin][subdir] = "contrib"
+projects[admin][version] = "2.0"
 
 ; Development
 
