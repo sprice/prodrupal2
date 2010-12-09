@@ -1,0 +1,83 @@
+<?php
+// $Id$
+/**
+ * @file
+ * Provide a simulated beep.
+ */
+
+/**
+ * Implementation of hook_action_info().
+ */
+function beep_action_info() {
+  $info['beep_beep_action'] = array(
+    'type' => 'system',
+    'description' => t('Beep annoyingly'),
+    'configurable' => FALSE,
+    'hooks' => array(
+      'nodeapi' => array('delete'),
+    ),
+  );
+  $info['beep_multiple_beep_action'] = array(
+    'type' => 'system',
+    'description' => t('Beep multiple times'),
+    'configurable' => TRUE,
+    'hooks' => array(
+      'any' => TRUE,
+    ),
+  );
+
+  return $info;
+}
+
+/**
+ * Form for configurable Drupal action to beep multiple times.
+ */
+function beep_multiple_beep_action_form($context) {
+  $form['beeps'] = array(
+  '#type' => 'textfield',
+  '#title' => t('Number of beeps'),
+  '#description' => t('Enter the number of times to beep when this action
+     executes.'),
+  '#default_value' => isset($context['beeps']) ? $context['beeps'] : '1',
+  '#required' => TRUE,
+  );
+  return $form;
+}
+
+function beep_multiple_beep_action_validate($form, $form_state) {
+  $beeps = $form_state['values']['beeps'];
+  if (!is_numeric($beeps)) {
+    form_set_error('beeps', t('Please enter a numeric value.'));
+  }
+  elseif ((int) $beeps > 10) {
+    form_set_error('beeps', t('That would be too annoying. Please choose fewer
+      than 10 beeps.'));
+  }
+}
+
+function beep_multiple_beep_action_submit($form, $form_state) {
+  return array(
+    'beeps' => (int) $form_state['values']['beeps']
+  );
+}
+
+/**
+ * Configurable action. Beeps a specified number of times.
+ */
+function beep_multiple_beep_action($object, $context) {
+  for ($i = 1; $i <= $context['beeps']; $i++) {
+    beep_beep();
+  }
+}
+
+/**
+ * Simulate a beep. A Drupal action.
+ */
+function beep_beep_action() {
+  beep_beep();
+}
+
+
+function beep_beep() {
+  watchdog('beep', 'Beep!');
+}

@@ -1,0 +1,84 @@
+<?php
+// $Id$
+/**
+ * @file
+ * Tests for annotate.module
+ */
+
+class AnnotateTestCase extends DrupalWebTestCase {
+  /**
+   * Implementation of getInfo().
+   */
+  public static function getInfo() {
+    return array(
+      'name' => t('Annotate functionality'),
+      'description' => ('Add and update node annotations'),
+      'group' => t('Annotation'),
+    );
+  }
+
+  /**
+   * Implementation of setUp().
+   */
+  function setUp() {
+    parent::setUp('annotate');
+
+    // Create and login user
+    $user = $this->drupalCreateUser(array('administer nodes'));
+    $this->drupalLogin($user);
+  }
+
+  /**
+   * Implementation of tearDown(),
+   */
+  function tearDown() {
+    parent::tearDown();
+  }
+
+  /**
+   * Test page content type annotation
+   */
+  public function testAnnotatePageContent() {
+    // Create a node of content type page to test
+    $edit = array();
+    $edit['title'] = $this->randomName(8);
+    $this->drupalPost('node/add/page', $edit, t('Save'));
+
+    // Test that the page create properly and contains annotations form
+    $this->assertText(t('Page @title has been created.',
+      array('@title' => $edit['title'])));
+    $this->assertText(t('Annotations'));
+    $this->assertText(t('Notes:'));
+
+    // Test initial annotation
+    $annotation = array();
+    $annotation['note'] = $this->randomName(16);
+    $this->drupalPost('node/1', $annotation, t('Update Annotation'));
+    $this->assertText($annotation['note']);
+
+    // Test updating annotation
+    $annotation2 = array();
+    $annotation2['note'] = $this->randomName(25);
+    $this->drupalPost('node/1', $annotation2, t('Update Annotation'));
+    $this->assertNoText($annotation['note']);
+    $this->assertText($annotation2['note']);
+
+  }
+
+  /**
+   * Test story content type annotation
+   */
+  public function testAnnotateStoryContent() {
+    // Create a story node
+    $edit = array();
+    $edit['title'] = $this->randomName(8);
+    $this->drupalPost('node/add/story', $edit, t('Save'));
+
+    // Test that the story was created and that annotations cannot be added.
+    // Story nodes may not have annotations by default
+    $this->assertText(t('Story @title has been created.',
+      array('@title' => $edit['title'])));
+    $this->assertNoText(t('Annotations'));
+    $this->assertNoText(t('Notes:'));
+  }
+}
