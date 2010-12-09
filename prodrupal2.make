@@ -1,3 +1,4 @@
+api = 2.0
 core = 6.x
 
 ; Contrib
@@ -17,15 +18,9 @@ projects[schema][subdir] = "development"
 projects[schema][version] = "1.7"
 
 projects[simpletest][subdir] = "development"
-projects[simpletest][version] = "2.8"
+projects[simpletest][version] = "2.11"
 
 ; Themes
 
-projects[rubik][location] = "http://code.developmentseed.org/fserver"
-projects[tao][location] = "http://code.developmentseed.org/fserver"
-
-; Pro Drupal Development 2nd edition modules
-
-projects[prodrupal2_modules][type] = "module"
-projects[prodrupal2_modules][download][type] = "git"
-projects[prodrupal2_modules][download][url] = "git://github.com/sprice/prodrupal2_modules.git"
+projects[rubik][subdir] = "contrib"
+projects[tao][subdir] = "contrib"
